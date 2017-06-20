@@ -9,15 +9,18 @@ public class Teste {
 
 	public static void main(String[] args) {
 		Conta conta = new Conta();
-		conta.setAgencia("3456");
-		conta.setBanco("Itaú");
-		conta.setNumero("564");
-		conta.setTitular("Alone");
+		conta.setAgencia("6723");
+		conta.setBanco("Banco do Brasil");
+		conta.setNumero("987");
+		conta.setTitular("Carlos");
 		
 		EntityManager em = new JPAUtil().getEntityManager();
 		
 		em.getTransaction().begin();
 		em.persist(conta);
+		
+		conta.setBanco("Bradesco");
+		
 		em.getTransaction().commit();
 		
 		em.close();
