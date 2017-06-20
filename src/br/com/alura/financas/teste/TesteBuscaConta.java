@@ -21,6 +21,14 @@ public class TesteBuscaConta {
 		System.out.println(conta.getTitular());
 		
 		em.getTransaction().commit();
+		
+		EntityManager em2 = new JPAUtil().getEntityManager();
+		em2.getTransaction().begin();
+		
+		conta.setTitular("Julio");
+		em2.merge(conta);
+		
+		em2.getTransaction().commit();
 	}
 	
 }
