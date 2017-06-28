@@ -1,6 +1,9 @@
 package br.com.alura.financas.teste;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.alura.financas.modelo.Conta;
 import br.com.alura.financas.modelo.Movimentacao;
@@ -13,12 +16,17 @@ public class TesteMovimentacaoConta {
 	EntityManager em = new JPAUtil().getEntityManager();
 	em.getTransaction().begin();
 	
-	Movimentacao movimentacao = em.find(Movimentacao.class, 2);
-	Conta conta = movimentacao.getConta();
+	String query = "select c from Conta c join fetch c.movimentacoes";
 	
+	Query jpql = em.createQuery(query);
 	
-	System.out.println(conta.getTitular());
-	System.out.println(conta.getMovimentacoes().size());
+	List<Conta> contas = jpql.getResultList();
+	
+	for (Conta conta : contas) {
+	    System.out.println("Titula: " + conta.getTitular());
+	    System.out.println("Movimentacoes: ");
+	    System.out.println(conta.getMovimentacoes().size());
+	}
 	
 	em.getTransaction().commit();
 	em.close();
