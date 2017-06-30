@@ -1,4 +1,4 @@
-package br.com.alura.financas.teste;
+package br.com.alura.financas.util;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import br.com.alura.financas.modelo.Movimentacao;
 import br.com.alura.financas.modelo.TipoMovimentacao;
 import br.com.alura.financas.util.JPAUtil;
 
-public class TesteMovimentacoesComCategorias {
+public class PopulaMovimentacoesComCategorias {
 
 	public static void main(String[] args) {
 		
@@ -31,10 +31,7 @@ public class TesteMovimentacoesComCategorias {
 		movimentacao1.setConta(conta);
 		
 		Movimentacao movimentacao2 = new Movimentacao();
-		Calendar amanha = Calendar.getInstance();
-		amanha.add(Calendar.DAY_OF_MONTH, 1);
-		
-		movimentacao2.setData(amanha);
+		movimentacao2.setData(Calendar.getInstance());
 		movimentacao2.setDescricao("Viagem ao RIO");
 		movimentacao2.setTipo(TipoMovimentacao.SAIDA);
 		movimentacao2.setValor(new BigDecimal("300.0"));
